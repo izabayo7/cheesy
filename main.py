@@ -48,9 +48,8 @@ def handle_choice(choice):
 # Function to display appetizers in tabular format
 def display_appetizers():
     print("\nAppetizers:")
-    print("-" * 135)
     print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
-    print("-" * 135)
+    print("-" * 125)
     appetizers = [
         {"name": "Garlic Bread", "description": "Freshly baked bread with garlic butter.", "price": "1000"},
         {"name": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1500"},
@@ -60,9 +59,13 @@ def display_appetizers():
     ]
     for index, appetizer in enumerate(appetizers, start=1):
         print("{:<5} | {:<20} | {:<90} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
-    print("-" * 135)
+    print("-" * 125)
     print("{:<5} | {:<20} | {:<90} | {:<10}".format("6", "Go back to Main Menu", "", ""))
-
+    # Ask user if they want to order appetizers
+    print("\nDo you want to order any appetizers? (Enter '1' to order, any other key to go back to the main menu)")
+    order_choice = input()
+    if order_choice == '1':
+        order_appetizers()
 
 # Function to handle ordering appetizers
 def order_appetizers():
