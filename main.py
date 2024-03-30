@@ -92,7 +92,7 @@ def order_appetizers():
 # Function to display main courses
 def display_main_courses():
     print("\nMain Courses:")
-    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Main Course", "Description", "Price (RWF)"))
+    print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Main Course", "Description", "Price (RWF)"))
     print("-" * 125)
     main_courses = [
         {"name": "Spaghetti Carbonara", "description": "Pasta with eggs, cheese, bacon, and black pepper.", "price": "3000"},
