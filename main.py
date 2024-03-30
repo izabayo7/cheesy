@@ -48,7 +48,35 @@ def handle_choice(choice):
 # Function to display appetizers
 def display_appetizers():
     print("\nAppetizers:")
-    # Display appetizers here
+    print("1. Garlic Bread - Freshly baked bread with garlic butter. Price: 1000 RWF")
+    print("2. Bruschetta - Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze. Price: 1500 RWF")
+    print("3. Mozzarella Sticks - Breaded and fried mozzarella cheese sticks served with marinara sauce. Price: 2000 RWF")
+    print("4. Onion Rings - Crispy battered onion rings served with a dipping sauce. Price: 1800 RWF")
+    print("5. Caprese Salad - Fresh mozzarella, tomatoes, basil, olive oil, and balsamic glaze. Price: 2500 RWF")
+    print("6. Go back to Main Menu")
+
+# Function to handle ordering appetizers
+def order_appetizers():
+    print("\nWelcome to the Appetizers Menu!")
+    print("Please enter your name:")
+    name = input()
+    ordered_items = []
+    while True:
+        print("\nEnter the number in front of the item you wish to order (or enter '6' to go back to the Main Menu):")
+        choice = input()
+        if choice == '6':
+            break
+        elif choice.isdigit() and 1 <= int(choice) <= 5:
+            ordered_items.append(choice)
+        else:
+            print("Invalid choice. Please try again.")
+    if ordered_items:
+        with open("orders.txt", "a") as file:
+            for item in ordered_items:
+                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - Appetizer {item}\n")
+        print("Your order has been placed!")
+    else:
+        print("No items were ordered.")
 
 # Function to display main courses
 def display_main_courses():
