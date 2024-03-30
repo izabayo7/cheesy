@@ -10,16 +10,21 @@ def load():
 
 # Function to display the restaurant menu
 def display_menu():
-    print("\n\n***************** Welcome To Our Cheesy Restaurant Menu ***************\n")
-
-    print("Here are our menu categories:")
-    print("1. Appetizers")
-    print("2. Main Courses")
-    print("3. Desserts")
-    print("4. Beverages")
-    print("5. Specials")
-    print("6. Vegetarian Options")
-    print("7. Exit")
+    print("\n\n*******************************************************")
+    print("****************** Welcome to our App *****************")
+    print("*******************************************************\n")
+    print("What would you like to do today?\n")
+    print("╔═══════════════════════════════════════════════════╗")
+    print("║                  Main Menu                        ║")
+    print("╠═══════════════════════════════════════════════════╣")
+    print("║    1. Appetizers                                  ║")
+    print("║    2. Main Courses                                ║")
+    print("║    3. Desserts                                    ║")
+    print("║    4. Beverages                                   ║")
+    print("║    5. Specials                                    ║")
+    print("║    6. Vegetarian Options                          ║")
+    print("║    7. Exit                                        ║")
+    print("╚═══════════════════════════════════════════════════╝")
 
 # Function to handle user's choice
 def handle_choice(choice):
@@ -78,10 +83,6 @@ def exit_program():
 
 # Main menu function
 def main_menu():
-    print("\n\n*******************************************************")
-    print("****************** Welcome to our App *****************")
-    print("*******************************************************\n")
-
     display_menu()
     choice = input("\nEnter your choice (1-7): ")
 
