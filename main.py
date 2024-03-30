@@ -23,7 +23,8 @@ def display_menu():
     print("║    4. Beverages                                   ║")
     print("║    5. Specials                                    ║")
     print("║    6. Vegetarian Options                          ║")
-    print("║    7. Exit                                        ║")
+    print("║    7. Order Multiple Items                        ║")
+    print("║    8. Exit                                        ║")
     print("╚═══════════════════════════════════════════════════╝")
 
 # Function to handle user's choice
@@ -41,6 +42,8 @@ def handle_choice(choice):
     elif choice == '6':
         display_vegetarian_options()
     elif choice == '7':
+        order_multiple_items()
+    elif choice == '8':
         exit_program()
     else:
         print("Invalid choice. Please try again.")
@@ -60,34 +63,6 @@ def display_appetizers():
     for index, appetizer in enumerate(appetizers, start=1):
         print("{:<5} | {:<20} | {:<90} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
     print("-" * 125)
-    # Ask user if they want to order appetizers
-    print("\nDo you want to order any appetizers? (Enter '1' to order, any other key to go back to the main menu)")
-    order_choice = input()
-    if order_choice == '1':
-        order_appetizers()
-
-# Function to handle ordering appetizers
-def order_appetizers():
-    print("\nWelcome to the Appetizers Menu!")
-    print("Please enter your name:")
-    name = input()
-    ordered_items = []
-    while True:
-        print("\nEnter the number in front of the item you wish to order (or enter '6' to go back to the Main Menu):")
-        choice = input()
-        if choice == '6':
-            break
-        elif choice.isdigit() and 1 <= int(choice) <= 5:
-            ordered_items.append(choice)
-        else:
-            print("Invalid choice. Please try again.")
-    if ordered_items:
-        with open("orders.txt", "a") as file:
-            for item in ordered_items:
-                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - Appetizer {item}\n")
-        print("Your order has been placed!")
-    else:
-        print("No items were ordered.")
 
 # Function to display main courses
 def display_main_courses():
@@ -114,6 +89,39 @@ def display_vegetarian_options():
     print("\nVegetarian Options:")
     # Display vegetarian options here
 
+# Function to order multiple items
+def order_multiple_items():
+    print("\nOrder Multiple Items:")
+    print("Select the category you want to order from:")
+    print("1. Appetizers")
+    print("2. Main Courses")
+    print("3. Desserts")
+    print("4. Beverages")
+    print("5. Specials")
+    print("6. Vegetarian Options")
+    print("7. Back to Main Menu")
+    category_choice = input("Enter your choice (1-7): ")
+    if category_choice == '7':
+        return
+    elif category_choice.isdigit() and 1 <= int(category_choice) <= 6:
+        display_menu_item_options(int(category_choice))
+    else:
+        print("Invalid choice. Please try again.")
+        order_multiple_items()
+
+# Function to display menu item options for ordering multiple items
+def display_menu_item_options(category):
+    categories = {
+        1: display_appetizers,
+        2: display_main_courses,
+        3: display_desserts,
+        4: display_beverages,
+        5: display_specials,
+        6: display_vegetarian_options
+    }
+    display_func = categories.get(category)
+    display_func()
+
 # Function to exit the program
 def exit_program():
     print("Closing App. Please wait for a few seconds to finish...")
@@ -123,7 +131,7 @@ def exit_program():
 # Main menu function
 def main_menu():
     display_menu()
-    choice = input("\nEnter your choice (1-7): ")
+    choice = input("\nEnter your choice (1-8): ")
 
     # Call the function corresponding to the user's choice
     handle_choice(choice)
