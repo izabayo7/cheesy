@@ -23,53 +23,65 @@ def display_menu():
     print("║    4. Beverages                                   ║")
     print("║    5. Specials                                    ║")
     print("║    6. Vegetarian Options                          ║")
-    print("║    7. Exit                                        ║")
+    print("║    7. Confirm Order                               ║")
+    print("║    8. Exit                                        ║")
     print("╚═══════════════════════════════════════════════════╝")
 
 # Function to handle user's choice
 def handle_choice(choice):
     if choice == '1':
-        display_appetizers()
+        display_category("Appetizers")
     elif choice == '2':
-        display_main_courses()
+        display_category("Main Courses")
     elif choice == '3':
-        display_desserts()
+        display_category("Desserts")
     elif choice == '4':
-        display_beverages()
+        display_category("Beverages")
     elif choice == '5':
-        display_specials()
+        display_category("Specials")
     elif choice == '6':
-        display_vegetarian_options()
+        display_category("Vegetarian Options")
     elif choice == '7':
+        confirm_order()
+    elif choice == '8':
         exit_program()
     else:
         print("Invalid choice. Please try again.")
 
-# Function to display appetizers in tabular format
-def display_appetizers():
-    print("\nAppetizers:")
-    print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
-    print("-" * 125)
-    appetizers = [
-        {"name": "Garlic Bread", "description": "Freshly baked bread with garlic butter.", "price": "1000"},
-        {"name": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1500"},
-        {"name": "Mozzarella Sticks", "description": "Breaded and fried mozzarella cheese sticks served with marinara sauce.", "price": "2000"},
-        {"name": "Onion Rings", "description": "Crispy battered onion rings served with a dipping sauce.", "price": "1800"},
-        {"name": "Caprese Salad", "description": "Fresh mozzarella, tomatoes, basil, olive oil, and balsamic glaze.", "price": "2500"}
-    ]
-    for index, appetizer in enumerate(appetizers, start=1):
-        print("{:<5} | {:<20} | {:<90} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
-    print("-" * 125)
-    print("{:<5} | {:<20} | {:<90} | {:<10}".format("6", "Go back to Main Menu", "", ""))
-    # Ask user if they want to order appetizers
-    print("\nDo you want to order any appetizers? (Enter '1' to order, any other key to go back to the main menu)")
-    order_choice = input()
-    if order_choice == '1':
-        order_appetizers()
+# Function to display items of a specific category in tabular format
+def display_category(category_name):
+    print(f"\n{category_name}:")
+    print_table(["No.", "Item", "Description", "Price (RWF)"], [
+        {"name": "Item1", "description": "Description1", "price": "1000"},
+        {"name": "Item2", "description": "Description2", "price": "1500"},
+        {"name": "Item3", "description": "Description3", "price": "2000"},
+        {"name": "Item4", "description": "Description4", "price": "1800"},
+        {"name": "Item5", "description": "Description5", "price": "2500"}
+    ])
 
-# Function to handle ordering appetizers
-def order_appetizers():
-    print("\nWelcome to the Appetizers Menu!")
+# Function to display and handle order confirmation
+def confirm_order():
+    # Implement confirmation logic here
+    print("Order Confirmation Logic")
+
+# Function to exit the program
+def exit_program():
+    print("Closing App. Please wait for a few seconds to finish...")
+    time.sleep(0.6)
+    exit()
+
+# Function to print a table with given headers and data
+def print_table(headers, data):
+    print("{:<5} | {:<25} | {:<70} | {:<10}".format(*headers))
+    print("-" * 125)
+    for index, item in enumerate(data, start=1):
+        print("{:<5} | {:<25} | {:<70} | {:<10}".format(index, item["name"], item["description"], item["price"]))
+    print("-" * 125)
+    print("{:<5} | {:<25} | {:<70} | {:<10}".format("6", "Go back to Main Menu", "", ""))
+
+# Function to order an item
+def order_item(category_name, items):
+    print(f"\nWelcome to the {category_name} Menu!")
     print("Please enter your name:")
     name = input()
     ordered_items = []
@@ -78,53 +90,22 @@ def order_appetizers():
         choice = input()
         if choice == '6':
             break
-        elif choice.isdigit() and 1 <= int(choice) <= 5:
-            ordered_items.append(choice)
+        elif choice.isdigit() and 1 <= int(choice) <= len(items):
+            ordered_items.append(items[int(choice) - 1]["name"])
         else:
             print("Invalid choice. Please try again.")
     if ordered_items:
         with open("orders.txt", "a") as file:
             for item in ordered_items:
-                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - Appetizer {item}\n")
+                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - {category_name} - {item}\n")
         print("Your order has been placed!")
     else:
         print("No items were ordered.")
 
-# Function to display main courses
-def display_main_courses():
-    print("\nMain Courses:")
-    # Display main courses here
-
-# Function to display desserts
-def display_desserts():
-    print("\nDesserts:")
-    # Display desserts here
-
-# Function to display beverages
-def display_beverages():
-    print("\nBeverages:")
-    # Display beverages here
-
-# Function to display specials
-def display_specials():
-    print("\nSpecials:")
-    # Display specials here
-
-# Function to display vegetarian options
-def display_vegetarian_options():
-    print("\nVegetarian Options:")
-    # Display vegetarian options here
-
-# Function to exit the program
-def exit_program():
-    print("Closing App. Please wait for a few seconds to finish...")
-    time.sleep(0.6)
-    exit()
-
 # Main menu function
 def main_menu():
     display_menu()
-    choice = input("\nEnter your choice (1-7): ")
+    choice = input("\nEnter your choice (1-8): ")
 
     # Call the function corresponding to the user's choice
     handle_choice(choice)
