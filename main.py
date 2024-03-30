@@ -92,6 +92,8 @@ def order_appetizers():
 # Function to display main courses
 def display_main_courses():
     print("\nMain Courses:")
+    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Main Course", "Description", "Price (RWF)"))
+    print("-" * 125)
     main_courses = [
         {"name": "Spaghetti Carbonara", "description": "Pasta with eggs, cheese, bacon, and black pepper.", "price": "3000"},
         {"name": "Grilled Salmon", "description": "Fresh salmon fillet grilled to perfection.", "price": "4500"},
@@ -100,11 +102,14 @@ def display_main_courses():
         {"name": "Steak Frites", "description": "Grilled steak served with French fries and salad.", "price": "5000"}
     ]
     for index, main_course in enumerate(main_courses, start=1):
-        print(f"{index}. {main_course['name']} - {main_course['price']} RWF")
+        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, main_course["name"], main_course["description"], main_course["price"]))
+    print("-" * 125)
 
 # Function to display desserts
 def display_desserts():
     print("\nDesserts:")
+    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Dessert", "Description", "Price (RWF)"))
+    print("-" * 125)
     desserts = [
         {"name": "Tiramisu", "description": "Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cheese.", "price": "2500"},
         {"name": "Chocolate Lava Cake", "description": "Warm chocolate cake with a gooey chocolate center, served with vanilla ice cream.", "price": "2800"},
@@ -113,42 +118,53 @@ def display_desserts():
         {"name": "Creme Brulee", "description": "Rich custard topped with caramelized sugar.", "price": "2600"}
     ]
     for index, dessert in enumerate(desserts, start=1):
-        print(f"{index}. {dessert['name']} - {dessert['price']} RWF")
+        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, dessert["name"], dessert["description"], dessert["price"]))
+    print("-" * 125)
 
 # Function to display beverages
 def display_beverages():
     print("\nBeverages:")
+    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Beverage", "Description", "Price (RWF)"))
+    print("-" * 125)
     beverages = [
-        {"name": "Coke", "price": "1000"},
-        {"name": "Iced Tea", "price": "1200"},
-        {"name": "Orange Juice", "price": "1500"},
-        {"name": "Cappuccino", "price": "1800"},
-        {"name": "Mineral Water", "price": "800"}
+        {"name": "Coke", "description": "Classic Coca-Cola.", "price": "1000"},
+        {"name": "Iced Tea", "description": "Refreshing iced tea.", "price": "1200"},
+        {"name": "Orange Juice", "description": "Freshly squeezed orange juice.", "price": "1500"},
+        {"name": "Cappuccino", "description": "Espresso with steamed milk and froth.", "price": "1800"},
+        {"name": "Mineral Water", "description": "Bottled mineral water.", "price": "800"}
     ]
     for index, beverage in enumerate(beverages, start=1):
-        print(f"{index}. {beverage['name']} - {beverage['price']} RWF")
+        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, beverage["name"], beverage["description"], beverage["price"]))
+    print("-" * 125)
 
 # Function to display specials
 def display_specials():
     print("\nSpecials:")
+    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Special", "Description", "Price (RWF)"))
+    print("-" * 125)
     specials = [
         {"name": "Chef's Special Pasta", "description": "Ask your server for details.", "price": "Varies"},
         {"name": "Seafood Platter", "description": "Assortment of fresh seafood served with dipping sauces.", "price": "Varies"},
         {"name": "Ratatouille", "description": "Classic French stewed vegetable dish.", "price": "Varies"}
     ]
     for index, special in enumerate(specials, start=1):
-        print(f"{index}. {special['name']} - {special['price']} RWF")
+        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, special["name"], special["description"], special["price"]))
+    print("-" * 125)
 
 # Function to display vegetarian options
 def display_vegetarian_options():
     print("\nVegetarian Options:")
+    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Vegetarian Option", "Description", "Price (RWF)"))
+    print("-" * 125)
     vegetarian_options = [
         {"name": "Eggplant Parmesan", "description": "Breaded and fried eggplant topped with marinara sauce and cheese, served with spaghetti.", "price": "3200"},
         {"name": "Vegetable Curry", "description": "Assorted vegetables cooked in a spicy curry sauce, served with rice.", "price": "2800"},
         {"name": "Quinoa Salad", "description": "Quinoa mixed with vegetables and herbs, dressed with lemon vinaigrette.", "price": "2500"}
     ]
     for index, option in enumerate(vegetarian_options, start=1):
-        print(f"{index}. {option['name']} - {option['price']} RWF")
+        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, option["name"], option["description"], option["price"]))
+    print("-" * 125)
+
 
 # Function to exit the program
 def exit_program():
