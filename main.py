@@ -11,9 +11,9 @@ def load():
 # Function to display the restaurant menu
 def display_menu():
     print("\n\n*******************************************************")
-    print("****************** Welcome to our App *****************")
+    print("****************** WELCOME TO CHEESY *****************")
     print("*******************************************************\n")
-    print("What would you like to do today?\n")
+    print("What would you like to have today?\n")
     print("╔═══════════════════════════════════════════════════╗")
     print("║                  Main Menu                        ║")
     print("╠═══════════════════════════════════════════════════╣")
@@ -60,7 +60,6 @@ def display_appetizers():
     for index, appetizer in enumerate(appetizers, start=1):
         print("{:<5} | {:<20} | {:<90} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
     print("-" * 125)
-    print("{:<5} | {:<20} | {:<90} | {:<10}".format("6", "Go back to Main Menu", "", ""))
     # Ask user if they want to order appetizers
     print("\nDo you want to order any appetizers? (Enter '1' to order, any other key to go back to the main menu)")
     order_choice = input()
