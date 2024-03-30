@@ -59,7 +59,7 @@ def display_appetizers():
     ]
     for index, appetizer in enumerate(appetizers, start=1):
         print("{:<5} | {:<20} | {:<55} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
-    print("-" * 90)
+    print("-" * 105)
     print("{:<5} | {:<20} | {:<55} | {:<10}".format("6", "Go back to Main Menu", "", ""))
 
 # Function to handle ordering appetizers
