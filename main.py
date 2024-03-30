@@ -45,15 +45,22 @@ def handle_choice(choice):
     else:
         print("Invalid choice. Please try again.")
 
-# Function to display appetizers
+# Function to display appetizers in tabular format
 def display_appetizers():
     print("\nAppetizers:")
-    print("1. Garlic Bread - Freshly baked bread with garlic butter. Price: 1000 RWF")
-    print("2. Bruschetta - Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze. Price: 1500 RWF")
-    print("3. Mozzarella Sticks - Breaded and fried mozzarella cheese sticks served with marinara sauce. Price: 2000 RWF")
-    print("4. Onion Rings - Crispy battered onion rings served with a dipping sauce. Price: 1800 RWF")
-    print("5. Caprese Salad - Fresh mozzarella, tomatoes, basil, olive oil, and balsamic glaze. Price: 2500 RWF")
-    print("6. Go back to Main Menu")
+    print("{:<5} | {:<20} | {:<45} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
+    print("-" * 90)
+    appetizers = [
+        {"name": "Garlic Bread", "description": "Freshly baked bread with garlic butter.", "price": "1000"},
+        {"name": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1500"},
+        {"name": "Mozzarella Sticks", "description": "Breaded and fried mozzarella cheese sticks served with marinara sauce.", "price": "2000"},
+        {"name": "Onion Rings", "description": "Crispy battered onion rings served with a dipping sauce.", "price": "1800"},
+        {"name": "Caprese Salad", "description": "Fresh mozzarella, tomatoes, basil, olive oil, and balsamic glaze.", "price": "2500"}
+    ]
+    for index, appetizer in enumerate(appetizers, start=1):
+        print("{:<5} | {:<20} | {:<45} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
+    print("-" * 90)
+    print("{:<5} | {:<20} | {:<45} | {:<10}".format("6", "Go back to Main Menu", "", ""))
 
 # Function to handle ordering appetizers
 def order_appetizers():
