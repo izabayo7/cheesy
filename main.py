@@ -61,7 +61,6 @@ def display_category(category_name):
 
 # Function to display and handle order confirmation
 def confirm_order():
-    # Implement confirmation logic here
     print("Order Confirmation Logic")
 
 # Function to exit the program
@@ -80,7 +79,14 @@ def print_table(headers, data):
     print("{:<5} | {:<25} | {:<70} | {:<10}".format("6", "Go back to Main Menu", "", ""))
 
 # Function to order an item
-def order_item(category_name, items):
+def order_item(category_name):
+    items = [
+        {"name": "Item1", "description": "Description1", "price": "1000"},
+        {"name": "Item2", "description": "Description2", "price": "1500"},
+        {"name": "Item3", "description": "Description3", "price": "2000"},
+        {"name": "Item4", "description": "Description4", "price": "1800"},
+        {"name": "Item5", "description": "Description5", "price": "2500"}
+    ]
     print(f"\nWelcome to the {category_name} Menu!")
     print("Please enter your name:")
     name = input()
@@ -91,13 +97,13 @@ def order_item(category_name, items):
         if choice == '6':
             break
         elif choice.isdigit() and 1 <= int(choice) <= len(items):
-            ordered_items.append(items[int(choice) - 1]["name"])
+            ordered_items.append(items[int(choice) - 1])
         else:
             print("Invalid choice. Please try again.")
     if ordered_items:
         with open("orders.txt", "a") as file:
             for item in ordered_items:
-                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - {category_name} - {item}\n")
+                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - {category_name} - {item['name']} - {item['price']}\n")
         print("Your order has been placed!")
     else:
         print("No items were ordered.")
