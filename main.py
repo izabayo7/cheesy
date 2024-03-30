@@ -48,8 +48,8 @@ def handle_choice(choice):
 # Function to display appetizers in tabular format
 def display_appetizers():
     print("\nAppetizers:")
-    print("{:<5} | {:<20} | {:<70} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
-    print("-" * 105)
+    print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
+    print("-" * 125)
     appetizers = [
         {"name": "Garlic Bread", "description": "Freshly baked bread with garlic butter.", "price": "1000"},
         {"name": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1500"},
@@ -58,9 +58,9 @@ def display_appetizers():
         {"name": "Caprese Salad", "description": "Fresh mozzarella, tomatoes, basil, olive oil, and balsamic glaze.", "price": "2500"}
     ]
     for index, appetizer in enumerate(appetizers, start=1):
-        print("{:<5} | {:<20} | {:<70} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
-    print("-" * 105)
-    print("{:<5} | {:<20} | {:<70} | {:<10}".format("6", "Go back to Main Menu", "", ""))
+        print("{:<5} | {:<20} | {:<90} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
+    print("-" * 125)
+    print("{:<5} | {:<20} | {:<90} | {:<10}".format("6", "Go back to Main Menu", "", ""))
 
 
 # Function to handle ordering appetizers
