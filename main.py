@@ -48,6 +48,7 @@ def handle_choice(choice):
 # Function to display appetizers in tabular format
 def display_appetizers():
     print("\nAppetizers:")
+    print("-" * 135)
     print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
     print("-" * 135)
     appetizers = [
