@@ -1,187 +1,156 @@
 import time
+import json
 
-# Function for application loader
-def load():
-    print("Starting App", end="")
-    for _ in range(10):
-        print(".", end="", flush=True)
-        time.sleep(0.1)
-    print("100%\n")
+class Restaurant:
+    def __init__(self):
+        self.menu = {
+            1: "Cold Starters",
+            2: "Hot Starters",
+            3: "Snacks",
+            4: "Beefs",
+            5: "Chickens",
+            6: "Fish",
+            7: "Pastas",
+            8: "Vegetarians",
+            9: "Health Foods",
+            10: "Pizzas",
+            11: "Grilled",
+            12: "Desserts"
+        }
+        self.menu_items = {
+            "Cold Starters": [],
+            "Hot Starters": [],
+            "Snacks": [],
+            "Beefs": [],
+            "Chickens": [],
+            "Fish": [],
+            "Pastas": [],
+            "Vegetarians": [],
+            "Health Foods": [],
+            "Pizzas": [],
+            "Grilled": [],
+            "Desserts": []
+        }
+        self.user = self.get_username()
+        self.orders_file = f"{self.user}_orders.txt"
+        self.populate_menu()
 
-# Function to display the restaurant menu
-def display_menu():
-    print("\n\n*******************************************************")
-    print("****************** WELCOME TO CHEESY *****************")
-    print("*******************************************************\n")
-    print("What would you like to have today?\n")
-    print("╔═══════════════════════════════════════════════════╗")
-    print("║                  Main Menu                        ║")
-    print("╠═══════════════════════════════════════════════════╣")
-    print("║    1. Appetizers                                  ║")
-    print("║    2. Main Courses                                ║")
-    print("║    3. Desserts                                    ║")
-    print("║    4. Beverages                                   ║")
-    print("║    5. Specials                                    ║")
-    print("║    6. Vegetarian Options                          ║")
-    print("║    7. Exit                                        ║")
-    print("╚═══════════════════════════════════════════════════╝")
+    def get_username(self):
+        username = input("Welcome! Please enter your username: ")
+        return username
 
-# Function to handle user's choice
-def handle_choice(choice):
-    if choice == '1':
-        display_appetizers()
-    elif choice == '2':
-        display_main_courses()
-    elif choice == '3':
-        display_desserts()
-    elif choice == '4':
-        display_beverages()
-    elif choice == '5':
-        display_specials()
-    elif choice == '6':
-        display_vegetarian_options()
-    elif choice == '7':
-        exit_program()
-    else:
-        print("Invalid choice. Please try again.")
+    def load(self):
+        print("Starting App", end="")
+        for _ in range(10):
+            print(".", end="", flush=True)
+            time.sleep(0.1)
+        print("100%\n")
 
-# Function to display appetizers in tabular format
-def display_appetizers():
-    print("\nAppetizers:")
-    print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Appetizer", "Description", "Price (RWF)"))
-    print("-" * 125)
-    appetizers = [
-        {"name": "Garlic Bread", "description": "Freshly baked bread with garlic butter.", "price": "1000"},
-        {"name": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1500"},
-        {"name": "Mozzarella Sticks", "description": "Breaded and fried mozzarella cheese sticks served with marinara sauce.", "price": "2000"},
-        {"name": "Onion Rings", "description": "Crispy battered onion rings served with a dipping sauce.", "price": "1800"},
-        {"name": "Caprese Salad", "description": "Fresh mozzarella, tomatoes, basil, olive oil, and balsamic glaze.", "price": "2500"}
-    ]
-    for index, appetizer in enumerate(appetizers, start=1):
-        print("{:<5} | {:<20} | {:<90} | {:<10}".format(index, appetizer["name"], appetizer["description"], appetizer["price"]))
-    print("-" * 125)
-    # Ask user if they want to order appetizers
-    print("\nDo you want to order any appetizers? (Enter '1' to order, any other key to go back to the main menu)")
-    order_choice = input()
-    if order_choice == '1':
-        order_appetizers()
+    def populate_menu(self):
+        # Add menu items for each category
+        self.menu_items["Cold Starters"] = [
+            {"name": "Caesar Salad", "description": "Romaine lettuce with croutons, parmesan cheese, and Caesar dressing.", "price": "1500"},
+            {"name": "Caprese Salad", "description": "Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.", "price": "1800"},
+            {"name": "Shrimp Cocktail", "description": "Chilled shrimp served with cocktail sauce and lemon wedges.", "price": "2500"},
+            {"name": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1200"}
+        ]
 
-# Function to handle ordering appetizers
-def order_appetizers():
-    print("\nWelcome to the Appetizers Menu!")
-    print("Please enter your name:")
-    name = input()
-    ordered_items = []
-    while True:
-        print("\nEnter the number in front of the item you wish to order (or enter '6' to go back to the Main Menu):")
-        choice = input()
-        if choice == '6':
-            break
-        elif choice.isdigit() and 1 <= int(choice) <= 5:
-            ordered_items.append(choice)
+        self.menu_items["Hot Starters"] = [
+            {"name": "Garlic Bread", "description": "Toasted bread with garlic butter.", "price": "800"},
+            {"name": "Spinach Artichoke Dip", "description": "Creamy dip with spinach, artichokes, and cheese, served with tortilla chips.", "price": "1200"},
+            {"name": "Stuffed Mushrooms", "description": "Mushroom caps filled with seasoned breadcrumbs and cheese.", "price": "1500"}
+        ]
+
+        self.menu_items["Snacks"] = [
+            {"name": "Chicken Wings", "description": "Crispy chicken wings tossed in buffalo sauce, served with ranch dressing.", "price": "2000"},
+            {"name": "Loaded Nachos", "description": "Tortilla chips topped with cheese, jalapeños, sour cream, and guacamole.", "price": "1800"},
+            {"name": "Mozzarella Sticks", "description": "Breaded and fried mozzarella sticks, served with marinara sauce.", "price": "1600"}
+        ]
+
+        self.menu_items["Beefs"] = [
+            {"name": "Beef Burger", "description": "Grilled beef patty with lettuce, tomato, onion, and pickles, served with fries.", "price": "2500"},
+            {"name": "Beef Steak", "description": "Juicy grilled beef steak served with mashed potatoes.", "price": "3500"},
+            {"name": "Beef Tacos", "description": "Soft tortillas filled with seasoned beef, lettuce, cheese, and salsa.", "price": "1800"}
+        ]
+
+        self.menu_items["Chickens"] = [
+            {"name": "Roast Chicken", "description": "Roasted chicken with herbs and spices, served with roasted vegetables.", "price": "2800"},
+            {"name": "Chicken Alfredo", "description": "Grilled chicken breast with creamy Alfredo sauce over fettuccine pasta.", "price": "3200"},
+            {"name": "Chicken Quesadilla", "description": "Grilled flour tortilla filled with chicken, cheese, and bell peppers.", "price": "1800"}
+        ]
+
+        # Add more menu items for other categories...
+
+    def display_menu(self):
+        print("\n\n*******************************************************")
+        print("****************** WELCOME TO CHEESY *****************")
+        print("*******************************************************\n")
+        print(f"Hello, {self.user}! What would you like to have today?\n")
+        for num, category in self.menu.items():
+            print(f"{num}. {category}")
+
+    def handle_choice(self, choice):
+        if choice.isdigit():
+            choice = int(choice)
+            if 1 <= choice <= len(self.menu):
+                selected_category = self.menu[choice]
+                self.display_category(selected_category)
+            else:
+                print("Invalid choice. Please try again.")
         else:
-            print("Invalid choice. Please try again.")
-    if ordered_items:
-        with open("orders.txt", "a") as file:
-            for item in ordered_items:
-                file.write(f"{name} - {time.strftime('%Y-%m-%d %H:%M:%S')} - Appetizer {item}\n")
-        print("Your order has been placed!")
-    else:
-        print("No items were ordered.")
+            print("Invalid input. Please enter a number.")
 
-# Function to display main courses
-def display_main_courses():
-    print("\nMain Courses:")
-    print("{:<5} | {:<20} | {:<90} | {:<10}".format("No.", "Main Course", "Description", "Price (RWF)"))
-    print("-" * 125)
-    main_courses = [
-        {"name": "Spaghetti Carbonara", "description": "Pasta with eggs, cheese, bacon, and black pepper.", "price": "3000"},
-        {"name": "Grilled Salmon", "description": "Fresh salmon fillet grilled to perfection.", "price": "4500"},
-        {"name": "Chicken Parmesan", "description": "Breaded chicken topped with marinara sauce and cheese, served with spaghetti.", "price": "3800"},
-        {"name": "Vegetable Stir-Fry", "description": "Assorted vegetables stir-fried with tofu in a savory sauce, served with rice.", "price": "3200"},
-        {"name": "Steak Frites", "description": "Grilled steak served with French fries and salad.", "price": "5000"}
-    ]
-    for index, main_course in enumerate(main_courses, start=1):
-        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, main_course["name"], main_course["description"], main_course["price"]))
-    print("-" * 125)
+    def display_category(self, category):
+        print(f"\n{category}:")
+        items = self.menu_items[category]
+        if items:
+            print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Item", "Description", "Price (RWF)"))
+            print("-" * 125)
+            for index, item in enumerate(items, start=1):
+                print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, item["name"], item["description"], item["price"]))
+            print("-" * 125)
+            self.place_order(category)
+        else:
+            print("No items available in this category.")
+            self.return_to_main_menu()
 
-# Function to display desserts
-def display_desserts():
-    print("\nDesserts:")
-    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Dessert", "Description", "Price (RWF)"))
-    print("-" * 125)
-    desserts = [
-        {"name": "Tiramisu", "description": "Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cheese.", "price": "2500"},
-        {"name": "Chocolate Lava Cake", "description": "Warm chocolate cake with a gooey chocolate center, served with vanilla ice cream.", "price": "2800"},
-        {"name": "New York Cheesecake", "description": "Creamy cheesecake with a graham cracker crust, topped with fresh berries.", "price": "2700"},
-        {"name": "Fruit Salad", "description": "Fresh seasonal fruits served with honey and mint.", "price": "2000"},
-        {"name": "Creme Brulee", "description": "Rich custard topped with caramelized sugar.", "price": "2600"}
-    ]
-    for index, dessert in enumerate(desserts, start=1):
-        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, dessert["name"], dessert["description"], dessert["price"]))
-    print("-" * 125)
+    def place_order(self, category):
+        choice = input("\nEnter the number of the item you want to order (e.g., '1' for the first item, 'back' to return to main menu): ")
+        if choice.lower() == 'back':
+            self.return_to_main_menu()
+        else:
+            try:
+                choice = int(choice)
+                if 1 <= choice <= len(self.menu_items[category]):
+                    selected_item = self.menu_items[category][choice - 1]
+                    self.save_order(selected_item)
+                else:
+                    print("Invalid item number. Please try again.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
 
-# Function to display beverages
-def display_beverages():
-    print("\nBeverages:")
-    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Beverage", "Description", "Price (RWF)"))
-    print("-" * 125)
-    beverages = [
-        {"name": "Coke", "description": "Classic Coca-Cola.", "price": "1000"},
-        {"name": "Iced Tea", "description": "Refreshing iced tea.", "price": "1200"},
-        {"name": "Orange Juice", "description": "Freshly squeezed orange juice.", "price": "1500"},
-        {"name": "Cappuccino", "description": "Espresso with steamed milk and froth.", "price": "1800"},
-        {"name": "Mineral Water", "description": "Bottled mineral water.", "price": "800"}
-    ]
-    for index, beverage in enumerate(beverages, start=1):
-        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, beverage["name"], beverage["description"], beverage["price"]))
-    print("-" * 125)
+    def save_order(self, item):
+        order_data = {
+            "item": item["name"],
+            "description": item["description"],
+            "price": item["price"]
+        }
+        with open(self.orders_file, "a") as file:
+            file.write(json.dumps(order_data) + "\n")
+        print("Order placed successfully!")
 
-# Function to display specials
-def display_specials():
-    print("\nSpecials:")
-    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Special", "Description", "Price (RWF)"))
-    print("-" * 125)
-    specials = [
-        {"name": "Chef's Special Pasta", "description": "Ask your server for details.", "price": "Varies"},
-        {"name": "Seafood Platter", "description": "Assortment of fresh seafood served with dipping sauces.", "price": "Varies"},
-        {"name": "Ratatouille", "description": "Classic French stewed vegetable dish.", "price": "Varies"}
-    ]
-    for index, special in enumerate(specials, start=1):
-        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, special["name"], special["description"], special["price"]))
-    print("-" * 125)
+    def return_to_main_menu(self):
+        print("\nReturning to the main menu...\n")
 
-# Function to display vegetarian options
-def display_vegetarian_options():
-    print("\nVegetarian Options:")
-    print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Vegetarian Option", "Description", "Price (RWF)"))
-    print("-" * 125)
-    vegetarian_options = [
-        {"name": "Eggplant Parmesan", "description": "Breaded and fried eggplant topped with marinara sauce and cheese, served with spaghetti.", "price": "3200"},
-        {"name": "Vegetable Curry", "description": "Assorted vegetables cooked in a spicy curry sauce, served with rice.", "price": "2800"},
-        {"name": "Quinoa Salad", "description": "Quinoa mixed with vegetables and herbs, dressed with lemon vinaigrette.", "price": "2500"}
-    ]
-    for index, option in enumerate(vegetarian_options, start=1):
-        print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, option["name"], option["description"], option["price"]))
-    print("-" * 125)
+    def main(self):
+        self.load()
+        while True:
+            self.display_menu()
+            choice = input("\nEnter your choice (1-12, 'exit' to quit): ")
+            if choice.lower() == 'exit':
+                break
+            self.handle_choice(choice)
 
-
-# Function to exit the program
-def exit_program():
-    print("Closing App. Please wait for a few seconds to finish...")
-    time.sleep(0.6)
-    exit()
-
-# Main menu function
-def main_menu():
-    display_menu()
-    choice = input("\nEnter your choice (1-7): ")
-
-    # Call the function corresponding to the user's choice
-    handle_choice(choice)
-
-# Main code execution
 if __name__ == "__main__":
-    load()
-    while True:
-        main_menu()
+    restaurant = Restaurant()
+    restaurant.main()

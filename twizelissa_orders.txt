@@ -1,0 +1,4 @@
+{"item": "Caesar Salad", "description": "Romaine lettuce with croutons, parmesan cheese, and Caesar dressing.", "price": "1500"}
+{"item": "Beef Steak", "description": "Juicy grilled beef steak served with mashed potatoes.", "price": "3500"}
+{"item": "Loaded Nachos", "description": "Tortilla chips topped with cheese, jalape\u00f1os, sour cream, and guacamole.", "price": "1800"}
+{"item": "Garlic Bread", "description": "Toasted bread with garlic butter.", "price": "800"}
