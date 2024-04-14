@@ -1,3 +1,0 @@
-{"item": "Bruschetta", "description": "Toasted bread topped with diced tomatoes, garlic, basil, and balsamic glaze.", "price": "1200"}
-{"item": "Chicken Wings", "description": "Crispy chicken wings tossed in buffalo sauce, served with ranch dressing.", "price": "2000"}
-{"item": "Beef Tacos", "description": "Soft tortillas filled with seasoned beef, lettuce, cheese, and salsa.", "price": "1800"}

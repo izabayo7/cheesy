@@ -1,4 +1,4 @@
-{"item": "Caesar Salad", "description": "Romaine lettuce with croutons, parmesan cheese, and Caesar dressing.", "price": "1500"}
-{"item": "Beef Steak", "description": "Juicy grilled beef steak served with mashed potatoes.", "price": "3500"}
-{"item": "Loaded Nachos", "description": "Tortilla chips topped with cheese, jalape\u00f1os, sour cream, and guacamole.", "price": "1800"}
-{"item": "Garlic Bread", "description": "Toasted bread with garlic butter.", "price": "800"}
+{"item": "Chief Classic Salad", "description": "Composition of Lettuce, onion, tomato, carrots, cucumber, Ham, croutons, avocado, egg, black olive, cheese, dressed with vinaigrette", "price": "7000 Fr"}
+{"item": "Californian Salad", "description": "Assorted timbale of fresh lettuce, carrots, onion, tomato avocado, egg, feta cheese, peanuts, tuna fish, dressed with Americano sauce", "price": "6500 Fr"}
+{"item": "T-Bone Steak", "description": "Char-grilled perfectly aged 250 grams prime T-bone steak, served with red wine dry pepper sauce, croquette potato and vegetables", "price": "16500 Fr"}
+{"item": "Beef Stew", "description": "Cooked sliced beef in red sauce, served with rice, French fries and vegetables", "price": "15500 Fr"}
