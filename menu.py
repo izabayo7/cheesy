@@ -140,7 +140,7 @@ class Menu:
                 {"name": "Pancakes With Strawberry Jam", "description": "Pancakes with strawberry jam", "price": "5000 Fr"},
             ]
 
-            # Add more menu items for other categories...
+            
         }
 
     def get_menu_items(self):

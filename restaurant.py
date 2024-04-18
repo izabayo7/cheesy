@@ -1,8 +1,6 @@
-# restaurant.py
-
 import time
 import json
-from menu import Menu
+from menu import Menu  # Assuming Menu class is defined in menu.py
 
 class Restaurant:
     def __init__(self, username):
@@ -22,15 +20,26 @@ class Restaurant:
         print("\n\n*******************************************************")
         print("****************** WELCOME TO CHEESY *****************")
         print("*******************************************************\n")
-        print(f"Hello, {self.user}! What would you like to have today?\n")
+        print("What would you like to have today?\n")
+        print("╔════════════════════════════════════════════════╗")
+        print("║                  Main Menu                     ║")
+        print("╠════════════════════════════════════════════════╣")
         menu_items = self.menu.get_menu_items()
         for num, category in enumerate(menu_items, start=1):
-            print(f"{num}. {category}")
+            if num < 10:
+                print(f"║    {num}. {category:<41}║")
+            else:
+                print(f"║   {num}. {category:<41}║")
+        print("║   13. Exit                                     ║")
+        print("╚════════════════════════════════════════════════╝")
 
     def handle_choice(self, choice):
         try:
             choice = int(choice)
             menu_items = list(self.menu.get_menu_items().keys())
+            if choice == 13:
+                print("\nGoodbye! Have a great day!")
+                return False
             selected_category = menu_items[choice - 1]
             self.display_category(selected_category)
         except (ValueError, IndexError):
@@ -40,23 +49,28 @@ class Restaurant:
         print(f"\n{category}:")
         items = self.menu.get_menu_items()[category]
         if items:
-            print("{:<5} | {:<30} | {:<60} | {:<10}".format("No.", "Item", "Description", "Price (RWF)"))
-            print("-" * 125)
+            print("-" * 215)
+            print("{:<5} | {:<40} | {:<150} | {:<10}".format("No.", "Item", "Description", "Price (RWF)"))
+            print("-" * 215)
             for index, item in enumerate(items, start=1):
-                print("{:<5} | {:<30} | {:<60} | {:<10}".format(index, item["name"], item["description"], item["price"]))
-            print("-" * 125)
+                item_name = item["name"][:35] + "..." if len(item["name"]) > 35 else item["name"]
+                description = item["description"][:150] + "..." if len(item["description"]) > 150 else item["description"]
+                print("{:<5} | {:<40} | {:<150} | {:<10}".format(index, item_name, description, item["price"]))
+            print("-" * 215)
             self.place_order(category)
         else:
             print("No items available in this category.")
-            self.return_to_main_menu()
+            input("\nPress Enter to return to the main menu...")
 
     def place_order(self, category):
         with open(self.orders_file, "a") as file:
             while True:
                 choice = input("\nEnter the number of the item you want to order (e.g., '1' for the first item, 'back' to return to main menu): ")
                 if choice.lower() == 'back':
-                    self.return_to_main_menu()
-                    break
+                    self.display_menu()
+                    choice = input("\nEnter your choice (1-13): ")
+                    if not self.handle_choice(choice):
+                     break 
                 try:
                     choice = int(choice)
                     items = self.menu.get_menu_items()[category]
@@ -74,16 +88,12 @@ class Restaurant:
                 except ValueError:
                     print("Invalid input. Please enter a number.")
 
-    def return_to_main_menu(self):
-        print("\nReturning to the main menu...\n")
-
     def main(self):
         while True:
             self.display_menu()
-            choice = input("\nEnter your choice (1-12, 'exit' to quit): ")
-            if choice.lower() == 'exit':
+            choice = input("\nEnter your choice (1-13): ")
+            if not self.handle_choice(choice):
                 break
-            self.handle_choice(choice)
 
 if __name__ == "__main__":
     username = input("Welcome! Please enter your username: ")

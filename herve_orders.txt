@@ -1,0 +1,3 @@
+{"item": "Stuffed Vegetables In Chapatti", "description": "Chapatti stuffed with vegetables", "price": "9500 Fr"}
+{"item": "Vegans Soup", "description": "An eye appeal of vegetarian soup contain without meat and any other animal products", "price": "8000 Fr"}
+{"item": "Fish Soup", "description": "Dices of fish, carrot, celery, onion, leek added with cream", "price": "8500 Fr"}

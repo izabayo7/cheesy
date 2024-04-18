@@ -1,0 +1,2 @@
+{"item": "Five To Five Special Pizza", "description": "Dough with sausage, garlic, onion, tomato, green pepper, ham, black olive, oregano, cheese, tomato sauce", "price": "11500 Fr"}
+{"item": "Avocado Salad", "description": "A large portion of fanned avocado, tomato, bedded on crispy lettuce and splashed with French dressing sauce", "price": "5000 Fr"}

@@ -1,0 +1,4 @@
+{"item": "Cooked Mixed Vegetables With Red Sauce", "description": "Served with parsley potato or boiled banana", "price": "9500 Fr"}
+{"item": "Stuffed Vegetables In Chapatti", "description": "Chapatti stuffed with vegetables", "price": "9500 Fr"}
+{"item": "Classic Ceasar Salad", "description": "An eye appeal Crips bacon, croutons, Lettuce, tomato, onion, parmessa cheese, Egg, Green pepper, Dressed with thousand hills dressing", "price": "7000 Fr"}
+{"item": "Greek Salad", "description": "Mixed with tomato, green pepper, onion, black olives, feta cheese, lettuce, cucumber, dressed with French vinaigrette", "price": "7500 Fr"}
